@@ -1,0 +1,679 @@
+/* =============================================
+   RESET & BASE STYLES
+   ============================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(rgba(12, 17, 47, 0.55), rgba(12, 17, 47, 0.55)), url('image/5.jpeg') center/cover no-repeat;
+    min-height: 100vh;
+    color: #f4f4ff;
+    overflow-x: hidden;
+}
+
+/* =============================================
+   MAIN APP CONTAINER (BEM: Block)
+   ============================================= */
+.romantic-app {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* =============================================
+   HEADER SECTION
+   ============================================= */
+.romantic-app__header {
+    position: relative;
+    padding: 60px 28px;
+    text-align: center;
+    color: #f5f5ff;
+    animation: slideDown 0.8s ease-out;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 80px rgba(4, 8, 28, 0.35);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 32px;
+    margin: 24px 20px 0;
+}
+
+.romantic-app__title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+.romantic-app__subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.95;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================================
+   MAIN CONTENT AREA
+   ============================================= */
+.romantic-app__main {
+    flex: 1;
+    padding: 40px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* =============================================
+   GALLERY PARALLAX (BEM: Block)
+   ============================================= */
+.gallery-parallax {
+    width: 100%;
+    max-width: 980px;
+    perspective: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-parallax__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+@media (max-width: 720px) {
+    .gallery-parallax__wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =============================================
+   GALLERY ITEM (BEM: Block)
+   ============================================= */
+.gallery-item {
+    position: relative;
+    cursor: pointer;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.24);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateZ(0);
+    height: 350px;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.gallery-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Parallax Image Container */
+.gallery-item__parallax-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+    transition: transform 0.1s linear, opacity 0.4s ease, filter 0.4s ease;
+    opacity: 0;
+    filter: blur(12px);
+}
+
+.gallery-item--revealed .gallery-item__image {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.gallery-item__cover {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    background: rgba(15, 18, 55, 0.95);
+    color: #f5f5ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    gap: 16px;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.gallery-item--revealed .gallery-item__cover {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.gallery-item__comment {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-top: 12px;
+}
+
+.comment-panel {
+    margin: 36px auto 0;
+    width: min(900px, 92vw);
+}
+
+.comment-panel__card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 28px;
+    padding: 28px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.comment-panel__title {
+    margin: 0 0 8px;
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.comment-panel__subtitle {
+    margin: 0 0 20px;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.6;
+}
+
+.comment-panel__input {
+    width: 100%;
+    min-height: 140px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #fff;
+    border-radius: 20px;
+    padding: 18px;
+    resize: vertical;
+    font-size: 1rem;
+    outline: none;
+    margin-bottom: 18px;
+}
+
+.comment-panel__input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.comment-panel__list {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Overlay with Gradient */
+.gallery-item__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.4) 0%,
+        rgba(118, 75, 162, 0.6) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.gallery-item:hover .gallery-item__overlay {
+    opacity: 1;
+}
+
+/* Gallery Item Label */
+.gallery-item__label {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    margin-bottom: 8px;
+}
+
+.gallery-item__description {
+    color: #ffffff;
+    font-size: 0.95rem;
+    opacity: 0;
+    animation: slideUp 0.4s ease-out forwards;
+    animation-delay: 0.1s;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =============================================
+   GALLERY INFO PANEL
+   ============================================= */
+.gallery-info {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.gallery-info__content {
+    background: rgba(255, 255, 255, 0.14);
+    padding: 40px;
+    border-radius: 24px;
+    max-width: 600px;
+    width: 90%;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.24);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gallery-info__title {
+    font-size: 2rem;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.gallery-info__description {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.gallery-info__close {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.gallery-info__close:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.gallery-info__close:active {
+    transform: translateY(0);
+}
+
+.header-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.music-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    backdrop-filter: blur(10px);
+}
+
+.music-icon {
+    margin-right: 8px;
+    font-size: 1.1rem;
+}
+
+.music-control:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.music-control:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+
+.intro-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 30, 0.92);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 1050;
+    animation: overlayFadeIn 0.6s ease;
+}
+
+.letter-card {
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 28px;
+    max-width: 520px;
+    width: 100%;
+    padding: 32px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    animation: letterDrop 0.8s ease-out;
+}
+
+.letter-label {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #7c5cf1;
+    margin-bottom: 18px;
+}
+
+.letter-body {
+    color: #f8f8ff;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 28px;
+}
+
+.letter-body p {
+    margin-bottom: 16px;
+}
+
+.letter-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.letter-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 35px rgba(102, 126, 234, 0.35);
+}
+
+.hidden {
+    display: none !important;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes letterDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-24px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =============================================
+   LOADING INDICATOR
+   ============================================= */
+.loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 999;
+}
+
+.loading-indicator__spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+}
+
+.loading-indicator__text {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =============================================
+   ERROR MESSAGE
+   ============================================= */
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ff4757;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(255, 71, 87, 0.3);
+    animation: slideInRight 0.4s ease-out;
+    z-index: 1001;
+}
+
+.error-message__text {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.toast-message {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.14);
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.24);
+    z-index: 1200;
+    animation: fadeIn 0.3s ease;
+}
+
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* =============================================
+   RESPONSIVE DESIGN
+   ============================================= */
+@media (max-width: 768px) {
+    .romantic-app__header {
+        padding: 40px 15px;
+    }
+
+    .romantic-app__title {
+        font-size: 2rem;
+    }
+
+    .romantic-app__subtitle {
+        font-size: 1rem;
+    }
+
+    .gallery-parallax__wrapper {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .gallery-item {
+        height: 300px;
+    }
+
+    .gallery-info__content {
+        padding: 30px;
+        width: 95%;
+    }
+
+    .gallery-info__title {
+        font-size: 1.5rem;
+    }
+
+    .gallery-info__description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .romantic-app__main {
+        padding: 20px 10px;
+    }
+
+    .romantic-app__title {
+        font-size: 1.5rem;
+    }
+
+    .gallery-parallax__wrapper {
+        gap: 15px;
+    }
+
+    .gallery-item {
+        height: 250px;
+    }
+
+    .gallery-item__overlay {
+        padding: 15px;
+    }
+
+    .gallery-item__label {
+        font-size: 1.1rem;
+    }
+
+    .error-message {
+        right: 10px;
+        left: 10px;
+        top: auto;
+        bottom: 20px;
+    }
+}
+
+/* =============================================
+   PERFORMANCE OPTIMIZATION
+   ============================================= */
+.gallery-item__image {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+
+.gallery-parallax__wrapper {
+    will-change: contents;
+}

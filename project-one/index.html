@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Parallax Interaktif - Romantic App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="romantic-app">
+        <!-- Header -->
+        <header class="romantic-app__header">
+            <div class="header-top">
+                <div>
+                    <h1 class="romantic-app__title">Album</h1>
+                </div>
+                <button id="musicButton" class="music-control" type="button"><span class="music-icon">🎵</span> Play Music</button>
+            </div>
+        </header>
+
+        <section id="introOverlay" class="intro-overlay">
+            <div class="letter-card">
+                <div class="letter-label">Surat Buat Pacarku</div>
+                <div class="letter-body">
+                    <p>Alooo sayaaang, aku mauu jujuur sama kamuu kalau aku sayaaang banget sama kamuu.</p>
+                    <p>Akuu berharap kitaa bisa terusss bersamaaa, mungkin nanti kita kaaann berantemm, ngambek, marahh, tapiii aku berharaaap kitaa kaaann menemukan solusii ituu bersamaaa.</p>
+                    <p>Aku sayang banget sama kamu Ziaa.</p>
+                    <p>- Dimas</p>
+                </div>
+                <button id="openGalleryButton" class="letter-button" type="button">Buka Foto</button>
+            </div>
+        </section>
+
+        <!-- Gallery Parallax Container -->
+        <main class="romantic-app__main hidden">
+            <div class="gallery-parallax" id="galleryParallax">
+                <div class="gallery-parallax__wrapper">
+                    <!-- Gallery items akan di-generate oleh JavaScript -->
+                </div>
+            </div>
+            <section class="comment-panel">
+                <div class="comment-panel__card">
+                    <h2 class="comment-panel__title">Komentar untuk Ziaa</h2>
+                    <p class="comment-panel__subtitle">Tulis pesanmu di bawah ini, khusus buat Ziaa.</p>
+                    <textarea id="globalCommentInput" class="comment-panel__input" placeholder="Tulis komen kamu buat Ziaa..." rows="4"></textarea>
+                    <button id="globalCommentSubmit" class="button button--primary" type="button">Kirim Komentar</button>
+                    <div class="comment-panel__list" id="commentList"></div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Gallery Info Panel -->
+        <section class="gallery-info" id="galleryInfo" style="display: none;">
+            <div class="gallery-info__content">
+                <h2 class="gallery-info__title" id="infoTitle">Judul Foto</h2>
+                <p class="gallery-info__description" id="infoDescription">Deskripsi foto akan ditampilkan di sini</p>
+                <button class="gallery-info__close" id="closeInfo">Tutup</button>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div class="loading-indicator" id="loadingIndicator" style="display: none;">
+            <div class="loading-indicator__spinner"></div>
+            <p class="loading-indicator__text">Memuat galeri...</p>
+        </div>
+
+        <!-- Error Message Container -->
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <p class="error-message__text" id="errorText"></p>
+        </div>
+        <div class="toast-message" id="toastMessage" style="display: none;"></div>
+    </div>
+
+    <audio id="backgroundMusic" src="music/bestpart.mp3" loop preload="auto"></audio>
+    <script src="app.js"></script>
+</body>
+</html>
